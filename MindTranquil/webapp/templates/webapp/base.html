@@ -1,0 +1,27 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% tailwind_css %}
+    <title>MindTranquil</title>
+</head>
+
+<body class="">
+    <!-- create nav bar -->
+    {% include 'webapp/topnavbar.html' %}
+    <hr>
+    <div class ="container flex ">
+        
+        <div class="">
+            {% include 'webapp/sidenavbar.html' %}
+        </div>
+        <div class="pl-5 pr-5 pt-16 container flex flex-col">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

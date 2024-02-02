@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .menu-button {
+        @apply ml-4 px-3 py-2 rounded-md text-xl leading-5 font-serif font-light text-sky-900 hover:bg-darkblue hover:text-white hover:scale-110 transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:bg-darkblue focus:text-white;
+    }
+
+    .smartmenu-button {
+        @apply mt-1 block px-3 py-2 rounded-md text-xl text-sky-900 font-light hover:bg-darkblue focus:outline-none hover:text-white focus:text-white focus:bg-darkblue transition duration-150 ease-in-out;
+    }
+
+    .sidemenu-button{
+        @apply h-14 flex items-stretch rounded-lg border-2 border-slate-200 hover:scale-110 transition duration-150 ease-in-out;
+    }
+
+    .mytext{
+        @apply text-lg font-light font-sans text-darkblue pt-4 pr-10;
+    }
+
+    .btn{
+        @apply bg-white hover:bg-gray-100 text-gray-800 font-sans font-semibold py-2 px-4 border border-gray-400 rounded shadow;
+    }
+
+    .modal-box{
+        @apply max-h-screen bg-white text-gray-800 font-sans font-semibold py-2 px-4 border border-gray-400 rounded shadow;
+    }
+}

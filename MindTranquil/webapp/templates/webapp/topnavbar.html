@@ -1,0 +1,52 @@
+{% load static %}
+<script src="//unpkg.com/alpinejs" defer></script>
+<nav 
+class="z-0 relative" 
+x-data="{open:false,menu:false, lokasi:false}">
+  <div class="relative z-10 bg-white ">
+    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+      <div class="relative flex items-center justify-between h-24">
+        <div class="flex items-center px-2 lg:px-0">
+
+            <a class="flex-shrink-0" href="#">     
+                <img class="block lg:block h-16 w-auto" src="{% static 'webapp/icons/mt1.svg' %}" alt="logo">
+            </a>
+
+            <div class="ml-6">
+                <h1 class="text-4xl font-light font-sans text-darkblue"> MindTranquil </h1>
+            </div>
+
+          <!-- for PC -->
+          <div class="hidden lg:block lg:ml-2">
+            <div class="flex absolute right-5 bottom-8">
+
+              <a href="#" class="menu-button"> User </a>
+              <a href="#" class="menu-button"> Logout </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- for viewing in smaller screen ||| -->
+        <div class="flex lg:hidden">
+          <button @click="menu=!menu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- for smart screen-->
+    <div x-show="menu" class="block md:hidden">
+      <div class="px-2 pt-2 pb-3">
+        <a href="#" class="smartmenu-button">User </a>
+        <a href="#" class="smartmenu-button">Logout </a>
+      </div>
+    </div>
+  </div>
+</nav>

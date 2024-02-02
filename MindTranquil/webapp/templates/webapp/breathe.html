@@ -1,0 +1,104 @@
+{% extends "webapp/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="flex flex-col items-center">
+
+    <h1 class="text-4xl font-light font-sans text-darkblue">Personalized Breathing</h1>
+    <br>
+    {%include 'webapp/timepicker.html'%}
+    <br>
+
+    <div class="flex flex-row w-80">
+        <h1 class="mytext pr-16">SOUND</h1>
+      
+        <button class="btn h-12" onclick="my_modal_5.showModal()">Select</button>
+        <span class="px-2"></span>
+        <button class="h-12 w-12 border" disabled>
+            <img class="h-8 w-8" src="{% static 'webapp/icons/nosound.png' %}">
+        </button>
+
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+
+            <div>
+                <h3 class="font-bold text-lg">Select sound</h3>
+            </div>
+
+            <div class="flow-root w-80 pt-5">
+
+
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-7 h-7 rounded-full" src="{% static 'webapp/icons/nosound.png' %}" alt="No sound">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Silent
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                <button class="btn">Select</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="{% static 'webapp/icons/sound1.png' %}" alt="sound">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Music 1
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                <button class="btn">Select</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="{% static 'webapp/icons/sound2.png' %}" alt="sound">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Music 2
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                <button class="btn">Select</button>
+                            </div>
+                        </div>
+                    </li>
+                    
+                </ul>
+           </div>
+
+
+            <div class="flex place-content-end pt-2">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn">Close</button>
+              </form>
+              
+              <form action="" class="pl-2">
+                <button class="btn bg-darkblue hover:bg-darkblue hover:scale-105 transition duration-150 ease-in-out">Set</button>
+              </form>
+            </div>
+
+          </div>
+        </dialog>
+
+    </div>
+    <br>
+    <button class="h-16 w-48 rounded-md bg-darkblue text-white hover:scale-105 transition duration-150 ease-in-out">Start Session</button>
+
+</div>
+
+{% endblock %}
