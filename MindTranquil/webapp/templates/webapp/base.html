@@ -11,17 +11,17 @@
 <body class="">
     <!-- create nav bar -->
     {% include 'webapp/topnavbar.html' %}
-    <hr>
+    
     <div class ="container flex ">
         
-        <div class="">
+        <div class="fixed">
             {% include 'webapp/sidenavbar.html' %}
         </div>
-        <div class="pl-5 pr-5 pt-16 container flex flex-col">
+        <main class="pl-5 pr-5 pt-16 container flex flex-col">
             {% block content %}
 
             {% endblock %}
-        </div>
+        </main>
     </div>
 </body>
 </html>
