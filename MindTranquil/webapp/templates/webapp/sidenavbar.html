@@ -1,20 +1,18 @@
 {% load static %}
 <script src="//unpkg.com/alpinejs" defer></script>
+
 <nav 
-class="sticky border shadow h-lvh" 
+class="sticky h-lvh bg-white dark:bg-ablack" 
 x-data="{open:false,menu:false, lokasi:false}">
-    <div class="max-w-20 px-3 bg-white">
+    <div class="relative z-10 max-w-20 px-3">
+
         <br>
+
         <div class="sidemenu-button">
             <div class="self-center">
-                <a class="" href="#">     
-                    <img class="h-12" src="{% static 'webapp/icons/medi-dark.svg' %}" alt="dark">
+                <a class="" href="{% url 'webapp:meditate' %}">     
+                    <img id="medi" class="h-12" src="{% static 'webapp/icons/medi-dark.svg' %}" alt="dark">
                 </a>
-                <!--
-                <a class="" href="#">     
-                    <img class="h-12" src="{% static 'webapp/icons/medi-light.svg' %}" alt="light">
-                </a> 
-            -->
             </div>
         </div>
 
@@ -23,7 +21,7 @@ x-data="{open:false,menu:false, lokasi:false}">
         <div class="sidemenu-button">
             <div class="self-center">
                 <a class="" href="{% url 'webapp:breathe' %}">     
-                    <img class="h-12" src="{% static 'webapp/icons/breathe-dark.svg' %}" alt="dark">
+                    <img id="breathe" class="h-12" src="{% static 'webapp/icons/breathe-dark.svg' %}" alt="dark">
                 </a>
                 <!--
                 <a class="" href="#">     
@@ -37,8 +35,8 @@ x-data="{open:false,menu:false, lokasi:false}">
 
         <div class="sidemenu-button">
             <div class="self-center pl-2">
-                <a class="" href="#">     
-                    <img class="h-8" src="{% static 'webapp/icons/trophy-dark.svg' %}" alt="dark">
+                <a class="" href="{% url 'webapp:stats' %}">     
+                    <img id="trophy" class="h-8" src="{% static 'webapp/icons/trophy-dark.svg' %}" alt="dark">
                 </a>
                 <!--
                 <a class="" href="#">     
@@ -52,9 +50,9 @@ x-data="{open:false,menu:false, lokasi:false}">
 
         <div class="sidemenu-button">
             <div class="self-center pl-2">
-            <a class="" href="#">     
-                <img class="h-8" src="{% static 'webapp/icons/moon.svg' %}" alt="dark">
-            </a>
+            <button id="toggle">     
+                <img id="mode" class="h-8" src="{% static 'webapp/icons/moon.svg' %}" alt="dark">
+            </button>
             <!--
             <a class="" href="#">     
                 <img class="h-8" src="{% static 'webapp/icons/sun.svg' %}" alt="light">
@@ -65,3 +63,15 @@ x-data="{open:false,menu:false, lokasi:false}">
 
     </div>
 </nav>
+<script>
+    const togglebtn = document.querySelector('#toggle');
+    togglebtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        
+        document.getElementById('medi').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/medi-light.svg' %}" : "{% static 'webapp/icons/medi-dark.svg' %}";
+        document.getElementById('breathe').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/breathe-light.svg' %}" : "{% static 'webapp/icons/breathe-dark.svg' %}";
+        document.getElementById('trophy').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/trophy-light.svg' %}" : "{% static 'webapp/icons/trophy-dark.svg' %}";
+        document.getElementById('mode').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/sun.svg' %}" : "{% static 'webapp/icons/moon.svg' %}";
+
+    });
+</script>

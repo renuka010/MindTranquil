@@ -1,0 +1,270 @@
+.calendar {
+    height: 25rem;
+    width: max-content;
+    background-color: white;
+    border-radius: 25px;
+    overflow: hidden;
+    padding: 35px 50px 0px 50px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 2px;
+  }
+
+.streak {
+    height: 25rem;
+    width: 190px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 2px;
+    padding: 20px 10px 10px 10px;
+}
+  
+.calendar-header {
+    background: rgb(94, 210, 236);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 7px;
+    align-items: center;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 10px;
+  }
+
+  .bground {
+    background: rgb(94, 210, 236);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 7px;
+    align-items: center;
+    font-weight: 700;
+    color: #ffffff;
+    height: 10rem;
+    margin: 10px;
+  }
+
+  .bground2 {
+    background: rgb(179, 247, 255);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 7px;
+    align-items: center;
+    font-weight: 700;
+    color: #ffffff;
+    height: 10rem;
+    margin: 10px;
+  }
+  
+  .calendar-body {
+    padding: 10px;
+  }
+  
+  .calendar-week-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: 600;
+    color: rgb(104, 104, 104);
+  }
+  
+  .calendar-week-days div {
+    display: grid;
+    place-items: center;
+    color: rgb(0, 190, 224);
+    height: 50px;
+  }
+  
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    color: #0A0921;
+  }
+  
+  .calendar-days div {
+    width: 37px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    animation: to-top 1s forwards;
+  }
+  
+  .month-picker {
+    padding: 5px 10px;
+    border-radius: 10px;
+    align-items: center;
+    width: 140px;
+  }
+  
+  .year-picker {
+    display: flex;
+    align-items: center;
+  }
+  
+  .year-change {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0px 10px;
+    cursor: pointer;
+  }
+  
+  .year-change:hover {
+    background-color: rgb(74, 182, 206);
+    transition: all .2s ease-in-out;
+    transform: scale(1.12);
+  }
+  
+  .calendar-footer {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .calendar-days div span {
+    position: absolute;
+  }
+  
+  .calendar-days div.current-date {
+    color: #f8fbff;
+    background-color: #9796f0;
+    border-radius: 20%;
+  }
+  
+
+  
+  .month-list>div {
+    display: grid;
+    place-content: center;
+    margin: 5px 10px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .month-list>div>div {
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .month-list.hideonce {
+    visibility: hidden;
+  }
+  
+  .date-time-formate {
+    height: 4rem;
+    width: 100%;
+    font-family: Dubai Light, Century Gothic;
+    position: relative;
+    display: flex;
+    top: 50px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .day-text-formate {
+    font-family: Microsoft JhengHei UI;
+    font-size: 1.4rem;
+    padding-right: 5%;
+    border-right: 3px solid #9796f0;
+  }
+  
+  .date-time-value {
+    display: block;
+    position: relative;
+    text-align: center;
+    padding-left: 5%;
+  }
+  
+  .time-formate {
+    font-size: 1.5rem;
+  }
+  
+  .time-formate.hideTime {
+    animation: hidetime 1.5s forwards;
+  }
+  
+  .day-text-formate.hidetime {
+    animation: hidetime 1.5s forwards;
+  }
+  
+  .date-formate.hideTime {
+    animation: hidetime 1.5s forwards;
+  }
+  
+  .day-text-formate.showtime {
+    animation: showtime 1s forwards;
+  }
+  
+  .time-formate.showtime {
+    animation: showtime 1s forwards;
+  }
+  
+  .date-formate.showtime {
+    animation: showtime 1s forwards;
+  }
+  
+  @keyframes to-top {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateY(100%);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes to-left {
+    0% {
+      transform: translatex(230%);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translatex(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes to-right {
+    10% {
+      transform: translatex(0);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translatex(-150%);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes showtime {
+    0% {
+      transform: translatex(250%);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translatex(0%);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes hidetime {
+    0% {
+      transform: translatex(0%);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translatex(-370%);
+      opacity: 1;
+    }
+  }

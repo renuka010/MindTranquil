@@ -4,16 +4,13 @@
 {% block content %}
 <div class="flex flex-col items-center">
 
-    <h1 class="heading">Personalized Breathing</h1>
+    <h1 class="heading">Personalized Meditation</h1>
     <br>
-
     <div class="flex ml-5">
         <h2 class="mytext">SELECT TIME</h2>
         <input type="time" id="time" name="time" class="border-2 border-gray-300 dark:border-black dark:bg-lightgrey p-2 rounded-lg">
     </div>
-
     <br>
-    
 
     <div class="flex flex-row">
         <h1 class="mytext pl-7">SOUND</h1>
@@ -59,6 +56,38 @@
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                     Music 1
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                <button class="btn">Select</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="{% static 'webapp/icons/sound2.png' %}" alt="sound">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Music 2
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                <button class="btn">Select</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="{% static 'webapp/icons/sound2.png' %}" alt="sound">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    Music 2
                                 </p>
                             </div>
                             <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">

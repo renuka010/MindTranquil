@@ -1,0 +1,76 @@
+{% extends "webapp/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'webapp/css/styles.css' %}">
+</head>
+<body>
+    <div class="flex flex-col items-center">
+
+  <div class="contianer flex flex-wrap pl-20">
+
+    <div class="streak dark:bg-lightblack">
+        <div class="bground dark:bg-darkgrey">
+
+        </div>
+        <div class="bground dark:bg-darkgrey">
+
+        </div>
+    </div>
+
+    <div class="streak dark:bg-lightblack">
+        <div class="bground2 dark:bg-lightgrey">
+
+        </div>
+        <div class="bground2 dark:bg-lightgrey">
+
+        </div>
+    </div>
+
+    <div class="calendar dark:bg-lightblack">
+      <div class="calendar-header dark:bg-darkgrey">
+        
+        <div class="year-picker" id="year-picker">
+          <span class="year-change" id="pre-month">
+            <pre><</pre>
+          </span>
+
+          <span class="month-picker" id="month-picker"> May </span>
+          <span class ="" id="year">2020 </span>
+
+          <span class="year-change" id="next-month">
+            <pre>></pre>
+          </span>
+        </div>
+      </div>
+
+      <div class="calendar-body">
+        <div class="calendar-week-days">
+          <div class="dark:text-lightgrey">Sun</div>
+          <div class="dark:text-lightgrey">Mon</div>
+          <div class="dark:text-lightgrey">Tue</div>
+          <div class="dark:text-lightgrey">Wed</div>
+          <div class="dark:text-lightgrey">Thu</div>
+          <div class="dark:text-lightgrey">Fri</div>
+          <div class="dark:text-lightgrey">Sat</div>
+        </div>
+        <div class="calendar-days dark:text-white">
+        </div>
+      </div>
+      <div class="calendar-footer">
+      </div>
+      <div class="date-time-formate">
+        
+      </div>
+      <div class="month-list"></div>
+    </div>
+
+  </div>
+
+  </div>
+
+  
+</body>
+
+{% endblock %}

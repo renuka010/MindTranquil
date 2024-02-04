@@ -4,7 +4,7 @@
 
 @layer components {
     .menu-button {
-        @apply ml-4 px-3 py-2 rounded-md text-xl leading-5 font-serif font-light text-sky-900 hover:bg-darkblue hover:text-white hover:scale-110 transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:bg-darkblue focus:text-white;
+        @apply ml-4 px-3 py-2 rounded-md text-xl leading-5 font-serif font-light text-sky-900 dark:text-white hover:bg-darkblue hover:text-white hover:scale-110 transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:bg-darkblue focus:text-white;
     }
 
     .smartmenu-button {
@@ -12,7 +12,7 @@
     }
 
     .sidemenu-button{
-        @apply h-14 flex items-stretch rounded-lg border-2 border-slate-200 hover:scale-110 transition duration-150 ease-in-out;
+        @apply h-14 flex items-stretch rounded-lg  hover:scale-110 transition duration-150 ease-in-out;
     }
 
     .mytext{
@@ -20,10 +20,14 @@
     }
 
     .btn{
-        @apply bg-white hover:bg-gray-100 text-gray-800 font-sans font-semibold py-2 px-4 border border-gray-400 rounded shadow;
+        @apply bg-white hover:bg-gray-100 text-gray-800 font-sans font-semibold py-2 px-4 border border-gray-400 rounded shadow dark:border-black dark:bg-lightgrey dark:hover:bg-slate-200;
     }
 
     .modal-box{
-        @apply max-h-screen bg-white text-gray-800 font-sans font-semibold py-2 px-4 border border-gray-400 rounded shadow;
+        @apply max-h-screen bg-white dark:bg-lightblack text-gray-800 dark:text-white font-sans font-semibold py-2 px-4 border border-gray-400 dark:border-black rounded shadow;
+    }
+
+    .heading{
+        @apply text-center text-4xl font-light font-sans text-darkblue;
     }
 }

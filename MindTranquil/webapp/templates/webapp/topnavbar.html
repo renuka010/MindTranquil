@@ -3,17 +3,17 @@
 <nav 
 class="sticky top-0 z-50" 
 x-data="{open:false,menu:false, lokasi:false}">
-  <div class="relative z-10 bg-white ">
+  <div class="relative z-10 bg-white dark:bg-ablack ">
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
       <div class="relative flex items-center justify-between h-24">
         <div class="flex items-center px-2 lg:px-0">
 
-            <a class="flex-shrink-0" href="#">     
+            <a class="flex-shrink-0" href="{% url 'webapp:index' %}">     
                 <img class="block lg:block h-16 w-auto" src="{% static 'webapp/icons/mt1.svg' %}" alt="logo">
             </a>
 
             <div class="ml-6">
-                <h1 class="text-4xl font-light font-sans text-darkblue"> MindTranquil </h1>
+                <h1 class="text-4xl font-light font-sans text-darkblue dark:text-white"> MindTranquil </h1>
             </div>
 
           <!-- for PC -->
@@ -49,5 +49,4 @@ x-data="{open:false,menu:false, lokasi:false}">
       </div>
     </div>
   </div>
-  <hr>
 </nav>
