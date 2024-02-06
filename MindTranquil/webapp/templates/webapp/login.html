@@ -1,0 +1,55 @@
+{% extends 'webapp/base.html' %}
+{% load tailwind_filters %}
+
+{% block content %}
+<head>
+    <style>
+        .mybox {
+            width: 350px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: rgb(135, 135, 137) 0px 7px 29px 0px;
+            margin: 2px;
+            padding: 20px 10px 10px 10px;
+        }
+    </style>
+</head>
+    <body>
+        <div class="flex flex-col items-center">
+
+            <div class="contianer flex flex-wrap pl-20 ">
+          
+              <div class="mybox dark:bg-lightblack dark:shadow-none dark:text-lightgrey">
+                  <div class="">
+
+                    <h1 class="heading dark:text-white"> Login </h3>
+                    <hr>
+                    <br>
+
+                    <form method="post" autocomplete="off">
+                        {% csrf_token %}
+
+                        {{form|crispy}}
+
+                        <br>
+                        <div class="flex flex-col items-center">
+                            <button type="submit" class="btn"> Login </button>
+                        </div>
+                    </form>
+
+                    <br>
+
+                    <div class="text-center">
+                        <a href="{% url 'webapp:register' %}"> Don't have an account? </a>
+                    </div>
+
+                    <br>
+
+          
+                  </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+{% endblock %}

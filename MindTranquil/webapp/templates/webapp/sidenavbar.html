@@ -23,11 +23,6 @@ x-data="{open:false,menu:false, lokasi:false}">
                 <a class="" href="{% url 'webapp:breathe' %}">     
                     <img id="breathe" class="h-12" src="{% static 'webapp/icons/breathe-dark.svg' %}" alt="dark">
                 </a>
-                <!--
-                <a class="" href="#">     
-                    <img class="h-12" src="{% static 'webapp/icons/breathe-light.svg' %}" alt="light">
-                </a> 
-            -->
             </div>
         </div>
 
@@ -38,11 +33,6 @@ x-data="{open:false,menu:false, lokasi:false}">
                 <a class="" href="{% url 'webapp:stats' %}">     
                     <img id="trophy" class="h-8" src="{% static 'webapp/icons/trophy-dark.svg' %}" alt="dark">
                 </a>
-                <!--
-                <a class="" href="#">     
-                    <img class="h-8" src="{% static 'webapp/icons/trophy-light.svg' %}" alt="light">
-                </a> 
-            -->
             </div>
         </div>
 
@@ -50,14 +40,9 @@ x-data="{open:false,menu:false, lokasi:false}">
 
         <div class="sidemenu-button">
             <div class="self-center pl-2">
-            <button id="toggle">     
+            <a id="toggle" href="{% url 'webmap:change_mode' %}">     
                 <img id="mode" class="h-8" src="{% static 'webapp/icons/moon.svg' %}" alt="dark">
-            </button>
-            <!--
-            <a class="" href="#">     
-                <img class="h-8" src="{% static 'webapp/icons/sun.svg' %}" alt="light">
-            </a> 
-        -->
+            </a>
             </div>
         </div>
 
@@ -65,7 +50,29 @@ x-data="{open:false,menu:false, lokasi:false}">
 </nav>
 <script>
     const togglebtn = document.querySelector('#toggle');
+    var preferredMode = "{{ user.preferred_mode }}";
+    if (preferredMode === 'dark') {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+    } else{
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+    }
+
+    document.getElementById('medi').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/medi-light.svg' %}" : "{% static 'webapp/icons/medi-dark.svg' %}";
+    document.getElementById('breathe').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/breathe-light.svg' %}" : "{% static 'webapp/icons/breathe-dark.svg' %}";
+    document.getElementById('trophy').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/trophy-light.svg' %}" : "{% static 'webapp/icons/trophy-dark.svg' %}";
+    document.getElementById('mode').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/sun.svg' %}" : "{% static 'webapp/icons/moon.svg' %}";
+
+
     togglebtn.addEventListener('click', () => {
+        
+        if (localStorage.theme === 'light') {
+            localStorage.theme = 'dark';
+        } else {
+            localStorage.theme = 'light';
+        }
+
         document.documentElement.classList.toggle('dark');
         
         document.getElementById('medi').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/medi-light.svg' %}" : "{% static 'webapp/icons/medi-dark.svg' %}";
