@@ -73,16 +73,13 @@ const generateCalendar = (month, year) => {
   }
 };
 
-let month_list = calendar.querySelector('.month-list');
 month_names.forEach((e, index) => {
   let month = document.createElement('div');
   month.innerHTML = `<div>${e}</div>`;
 
-  month_list.append(month);
   month.onclick = () => {
     currentMonth.value = index;
     generateCalendar(currentMonth.value, currentYear.value);
-    month_list.classList.replace('show', 'hide');
     dayTextFormate.classList.remove('hideTime');
     dayTextFormate.classList.add('showtime');
     timeFormate.classList.remove('hideTime');
@@ -92,9 +89,6 @@ month_names.forEach((e, index) => {
   };
 });
 
-(function() {
-  month_list.classList.add('hideonce');
-})();
 
 document.querySelector('#pre-month').onclick = () => {
   --currentMonth.value;
@@ -133,7 +127,6 @@ const currentDateFormate = new Intl.DateTimeFormat(
   'en-US',
   showCurrentDateOption
 ).format(currshowDate);
-todayShowDate.textContent = currentDateFormate;
 setInterval(() => {
   const timer = new Date();
   const option = {
@@ -149,6 +142,5 @@ setInterval(() => {
       2,
       '0'
     )}: ${`${timer.getSeconds()}`.padStart(2, '0')}`;
-  todayShowTime.textContent = formateTimer;
 }, 1000);
 

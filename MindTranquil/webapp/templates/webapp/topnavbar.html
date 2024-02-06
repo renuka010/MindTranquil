@@ -20,8 +20,13 @@ x-data="{open:false,menu:false, lokasi:false}">
           <div class="hidden lg:block lg:ml-2">
             <div class="flex absolute right-5 bottom-8">
 
-              <a href="#" class="menu-button"> User </a>
-              <a href="#" class="menu-button"> Logout </a>
+              {% if user.is_authenticated %}
+                <a href="#" class="menu-button"> {{user.username}} </a>
+                <a href="{% url 'webapp:logout' %}" class="menu-button"> Logout </a>
+              {% else %}
+                <a href="{% url 'webapp:login' %}" class="menu-button"> Login </a>
+              {% endif %}
+
             </div>
           </div>
         </div>
@@ -44,8 +49,12 @@ x-data="{open:false,menu:false, lokasi:false}">
     <!-- for smart screen-->
     <div x-show="menu" class="block md:hidden">
       <div class="px-2 pt-2 pb-3">
-        <a href="#" class="smartmenu-button">User </a>
-        <a href="#" class="smartmenu-button">Logout </a>
+        {% if user.is_authenticated %}
+          <a href="#" class="smartmenu-button">User </a>
+          <a href="{% url 'webapp:logout' %}" class="smartmenu-button">Logout </a>
+        {% else %}
+          <a href="{% url 'webapp:login' %}" class="smartmenu-button">Login </a>
+        {% endif %}
       </div>
     </div>
   </div>
