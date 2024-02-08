@@ -1,0 +1,158 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% tailwind_css %}
+        <style>
+            @keyframes grow {
+            0% {
+                height: 25px;
+                width: 25px;
+            }
+
+            45% {
+                height: 300px;
+                width: 300px;
+            }
+
+            50% {
+                height: 300px;
+                width: 300px;
+            }
+
+            95% {
+                height: 25px;
+                width: 25px;
+            }
+
+            100% {
+                height: 25px;
+                width: 25px;
+            }
+            }
+
+            .dot {
+                animation-name: grow;
+                animation-duration: 10s;
+                position: relative;
+                animation-iteration-count: infinite;
+
+                border-color: black;
+                background-color: #feda47;
+                border-radius: 50%;
+                display: inline-block;
+            }
+        </style>
+        <title>MindTranquil</title>
+    </head>
+    <body class="bg-mediumblue dark:bg-darkblack">
+        <div class="container flex flex-col ">
+            <div class="container flex flex-row">
+                <div class="container flex flex-col">
+                    <h1 class="heading text-lightblack pt-3">Breathing session</h1>
+                </div>
+                <div class="container flex flex-col float-right w-12 p-2">
+                    <a class="" href="{% url 'webapp:breathe' %}">     
+                        <img class="h-8" src="{% static 'webapp/icons/x.svg' %}" alt="close">
+                    </a>
+                </div>
+            </div>
+            
+            <div class=" container flex  items-center h-128 ">
+                <div class=" container flex flex-col  items-center">
+                    <span class="dot"></span>
+
+                    <dialog id="start" class="h-32 w-96 rounded-md bg-darkblue dark:bg-mediumblack border border-black">
+                        <h1 class="font-sans text-white text-center pt-6 text-2xl">Session is starting...</h1>
+                        <form method="dialog" class="pl-40 pt-4">
+                          <button id="startsession" class="btn">OK</button>
+                        </form>
+                    </dialog>
+                    <dialog id="finish" class="h-48 w-96 rounded-md bg-darkblue dark:bg-mediumblack border border-black">
+                        <h1 class="font-sans text-white text-center pt-6 text-2xl">Congratulations! You have completed the session.</h1>
+                        <form method="dialog" class="pl-40 pt-4">
+                          <button id="endsession" class="btn">OK</button>
+                        </form>
+                    </dialog>
+                </div>
+            </div>
+
+            <div class=" container flex flex-col  items-center">
+                <a>     
+                    <img id="playButton" class="h-8" src="{% static 'webapp/icons/play.svg' %}" alt="close">
+                </a>
+                <input type="range" min="0" max="60" value="0" id="mySlider" class="w-96 pt-6 range-track" disabled>
+            </div>
+        </div>
+        
+        <script>
+            start.showModal();
+            var myMusic = "{{data.myMusic}}";
+            let currentaudio = new Audio(myMusic);
+
+            var [hours, minutes] = "{{data.time}}".split(":");
+            console.log(hours, minutes);
+            mySlider.max = (hours * 60 + minutes)*60;
+
+            const dot = document.querySelector('.dot');
+            dot.style.animationPlayState = 'paused';
+
+            let playbutton = document.getElementById('playButton');
+
+            document.getElementById("startsession").addEventListener("click", function() {
+                dot.style.animationPlayState = 'running';
+                currentaudio.play();
+                currentaudio.loop = true;
+                playbutton.src = "{% static 'webapp/icons/pause.svg' %}";
+            });
+
+            document.getElementById("endsession").addEventListener("click", function() {
+                window.location.href = "{% url 'webapp:breathe' %}";
+            });
+
+            playbutton.addEventListener("click", function(){
+                if(currentaudio.paused){
+                    currentaudio.play();
+                    currentaudio.loop = true;
+                    playbutton.src = "{% static 'webapp/icons/pause.svg' %}";
+                    dot.style.animationPlayState = 'running';
+                } else {
+                    currentaudio.pause();
+                    playbutton.src = "{% static 'webapp/icons/play.svg' %}";
+                    dot.style.animationPlayState = 'paused';
+                }
+            });
+
+            var slider = document.getElementById("mySlider");
+
+            // Set the initial value of the slider
+            slider.value = 0;
+
+            // Calculate the increment value (1 increment every second)
+            var increment = 1;
+
+            currentaudio.addEventListener("play", function() {
+                interval = setInterval(function() {
+                // Increase the slider value
+                slider.value = parseInt(slider.value) + increment;
+
+                // If the slider value reaches the maximum, stop the interval
+                if(slider.value == slider.max) {
+                    clearInterval(interval);
+                    dot.style.animationPlayState = 'paused';
+                    currentaudio.pause();
+                    playbutton.src = "{% static 'webapp/icons/play.svg' %}";
+                    finish.showModal();
+                }
+            }, 1000);
+            });
+
+            // When the audio is paused, stop moving the slider
+            currentaudio.addEventListener("pause", function() {
+                clearInterval(interval);
+            });
+        </script>
+    </body>
+</html>

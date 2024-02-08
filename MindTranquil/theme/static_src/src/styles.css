@@ -8,7 +8,7 @@
     }
 
     .smartmenu-button {
-        @apply mt-1 block px-3 py-2 rounded-md text-xl text-sky-900 font-light hover:bg-darkblue focus:outline-none hover:text-white focus:text-white focus:bg-darkblue transition duration-150 ease-in-out;
+        @apply mt-1 block px-3 py-2 rounded-md text-xl text-sky-900 font-light hover:bg-darkblue focus:outline-none hover:text-white focus:text-white focus:bg-darkblue transition duration-150 ease-in-out dark:text-white;
     }
 
     .sidemenu-button{
@@ -29,5 +29,10 @@
 
     .heading{
         @apply text-center text-4xl font-light font-sans text-darkblue;
+    }
+
+    /* The track (line) of the slider */
+    .range-track:disabled::-webkit-slider-runnable-track {
+        @apply bg-cyan-500 h-1; /* Change this to your desired color */
     }
 }

@@ -57,6 +57,9 @@ module.exports = {
                 darkgrey: '#818488',
                 lightgrey: '#ABAEB0',
             },
+            height: {
+                '128': '24rem',
+            },
         },
     },
     plugins: [

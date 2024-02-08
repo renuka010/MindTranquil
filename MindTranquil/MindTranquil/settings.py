@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'crispy_forms',
     'crispy_tailwind',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +96,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mindtranquilDB',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': '$hiv@nK1991!',
         'HOST': 'localhost',
         'PORT': '5432',  # Default PostgreSQL port
     }

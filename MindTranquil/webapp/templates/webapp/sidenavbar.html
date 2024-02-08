@@ -40,7 +40,7 @@ x-data="{open:false,menu:false, lokasi:false}">
 
         <div class="sidemenu-button">
             <div class="self-center pl-2">
-            <a id="toggle" href="{% url 'webmap:change_mode' %}">     
+            <a id="toggle" href="#">     
                 <img id="mode" class="h-8" src="{% static 'webapp/icons/moon.svg' %}" alt="dark">
             </a>
             </div>
@@ -48,29 +48,70 @@ x-data="{open:false,menu:false, lokasi:false}">
 
     </div>
 </nav>
+
 <script>
-    const togglebtn = document.querySelector('#toggle');
-    var preferredMode = "{{ user.preferred_mode }}";
-    if (preferredMode === 'dark') {
-        document.documentElement.classList.add('dark');
-        localStorage.theme = 'dark';
-    } else{
-        document.documentElement.classList.remove('dark');
-        localStorage.theme = 'light';
+
+    function updatePreferredMode(mode) {
+        fetch('/webapp/update_mode_api/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'), // Include CSRF token for security
+                'Authorization': 'Token ' + sessionStorage.getItem('token')
+            },
+            body: JSON.stringify({ preferred_mode: mode })
+        })
+        .then(response => {
+            if (response.ok) {
+                // Update UI or display success message
+                console.log('Preferred mode updated successfully');
+            } else {
+                // Handle error
+                console.error('Failed to update preferred mode');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
-    document.getElementById('medi').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/medi-light.svg' %}" : "{% static 'webapp/icons/medi-dark.svg' %}";
-    document.getElementById('breathe').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/breathe-light.svg' %}" : "{% static 'webapp/icons/breathe-dark.svg' %}";
-    document.getElementById('trophy').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/trophy-light.svg' %}" : "{% static 'webapp/icons/trophy-dark.svg' %}";
-    document.getElementById('mode').src = document.documentElement.classList.contains('dark') ? "{% static 'webapp/icons/sun.svg' %}" : "{% static 'webapp/icons/moon.svg' %}";
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 
+    const togglebtn = document.querySelector('#toggle');
+    var preferredMode = "{{ user.preferred_mode }}";
+    if (preferredMode === 'dark' || (!(preferredMode === 'light') && localStorage.theme === 'dark')) {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+
+        document.getElementById('medi').src = "{% static 'webapp/icons/medi-light.svg' %}";
+        document.getElementById('breathe').src = "{% static 'webapp/icons/breathe-light.svg' %}";
+        document.getElementById('trophy').src = "{% static 'webapp/icons/trophy-light.svg' %}";
+        document.getElementById('mode').src = "{% static 'webapp/icons/sun.svg' %}";
+    } else{
+        localStorage.theme = 'light';
+    }
 
     togglebtn.addEventListener('click', () => {
         
         if (localStorage.theme === 'light') {
             localStorage.theme = 'dark';
+            updatePreferredMode('dark');
         } else {
             localStorage.theme = 'light';
+            updatePreferredMode('light');
         }
 
         document.documentElement.classList.toggle('dark');

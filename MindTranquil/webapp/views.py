@@ -6,6 +6,11 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import auth
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from .serializers import UserSerializer
+from rest_framework.permissions import IsAuthenticated
+
 #register a new user
 def user_registration(request):
     if request.method == 'POST':
@@ -60,11 +65,19 @@ def meditate(request):
 def stats(request):
     return render(request, 'webapp/stats.html')
 
-#change dark/light mode view
-def change_mode(request):
-    if request.user.preferred_mode == 'light':
-        request.user.preferred_mode = 'dark'
+    
+#API view for updating mode
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def update_mode_api(request):
+    serializer = UserSerializer(instance=request.user, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'message': 'Preferred mode updated successfully'})
     else:
-        request.user.preferred_mode = 'light'
-    request.user.save()
-    return redirect('webapp:index')
+        return Response({'error': 'Invalid request method'}, status=400)
+
+#redirect to music playing mode
+@login_required(login_url='webapp:login')
+def play_music(request):
+    return render(request, 'webapp/play_music.html', context={'data': request.POST})
