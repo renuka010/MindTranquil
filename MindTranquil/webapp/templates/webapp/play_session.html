@@ -6,74 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% tailwind_css %}
         <style>
-            @keyframes grow {
-            0% {
-                height: 25px;
-                width: 25px;
+            body {
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
             }
-
-            45% {
-                height: 300px;
-                width: 300px;
-            }
-
-            50% {
-                height: 300px;
-                width: 300px;
-            }
-
-            95% {
-                height: 25px;
-                width: 25px;
-            }
-
-            100% {
-                height: 25px;
-                width: 25px;
-            }
-            }
-
-            .dot {
-                animation-name: grow;
-                animation-duration: 10s;
-                position: relative;
-                animation-iteration-count: infinite;
-
-                border-color: black;
-                background-color: #feda47;
-                border-radius: 50%;
-                display: inline-block;
-            }
-
-            @keyframes expand {
-            0% {
-                font-size: x-large;
-            }
-
-            50% {
-                font-size: xx-large;
-            }
-
-            100% {
-                font-size: x-large;
-            }
-            }
-
-            .inhale{
-                animation-name: expand;
-                animation-duration: 10s;
-                position: relative;
-                animation-iteration-count: infinite;
-            }
-
-        </style>
+            </style>
         <title>MindTranquil</title>
     </head>
-    <body class="bg-mediumblue dark:bg-darkblack">
-        <div class="container flex flex-col ">
+    <body background="{% static 'webapp/image/img1.png' %}">
+        <div class="container flex flex-col h-screen">
             <div class="container flex flex-row">
                 <div class="container flex flex-col">
-                    <h1 class="heading text-lightblack pt-3 dark:text-darkblue">Breathing session</h1>
+                    <h1 class="heading text-lightblack pt-3">Meditation session</h1>
                 </div>
                 <div class="container flex flex-col float-right w-12 p-2">
                     <a class="" href="#">     
@@ -81,9 +26,10 @@
                     </a>
                 </div>
             </div>
-            <div class=" container flex  items-center h-128 ">
+            
+            <div class=" container flex flex-grow items-center">
                 <div class=" container flex flex-col  items-center">
-                    <span class="dot dark:bg-cyan-900"></span>
+                    
 
                     <dialog id="start" class="h-32 w-96 rounded-md bg-darkblue dark:bg-mediumblack border border-black">
                         <h1 class="font-sans text-white text-center pt-6 text-2xl">Session is starting...</h1>
@@ -101,52 +47,46 @@
                 </div>
                 
             </div>
-            <div class=" container flex flex-col  items-center">
-                <h1 class="inhale mytext pl-9 text-yellow-800 dark:text-cyan-200">Inhale</h1>
-                <br>
-            </div>
-            <div class=" container flex flex-col  items-center">
-                <input type="range" min="0" max="60" value="0" id="mySlider" class="w-96 pt-6 range-track" disabled>
+            <br>
+            <br>
+            <br>
+            <div class=" container flex flex-col items-center">
+                <a>     
+                    <img id="playButton" class="h-8" src="{% static 'webapp/icons/play.svg' %}" alt="close">
+                </a>
+                <input type="range" min="0" max="60" value="0" id="mySlider" class="w-full pt-6 range-track" disabled>
             </div>
         </div>
         
         <script>
-
-            var preferredMode = "{{ user.preferred_mode }}";
-            if (preferredMode === 'dark'){
-                document.documentElement.classList.add('dark');
-            }
-
             start.showModal();
             var myMusic = "{{data.myMusic}}";
             let currentaudio = new Audio(myMusic);
 
             var [hours, minutes] = "{{data.time}}".split(":");
+            console.log(hours, minutes);
             mySlider.max = (hours * 60 + minutes)*60;
 
-            const dot = document.querySelector('.dot');
-            const expand = document.querySelector('.inhale');
-            dot.style.animationPlayState = 'paused';
-            expand.style.animationPlayState = 'paused';
+
+            let playbutton = document.getElementById('playButton');
 
             document.getElementById("startsession").addEventListener("click", function() {
-                dot.style.animationPlayState = 'running';
-                expand.style.animationPlayState = 'running';
                 currentaudio.play();
                 currentaudio.loop = true;
+                playbutton.src = "{% static 'webapp/icons/pause.svg' %}";
             });
 
             document.getElementById("endsession").addEventListener("click", function() {
                 finish.close();
-                window.location.href = "{% url 'webapp:breathe' %}";
+                window.location.href = "{% url 'webapp:meditate' %}";
             });
 
             document.getElementById("close").addEventListener("click", function() {
                 endSession();
-                window.location.href = "{% url 'webapp:breathe' %}";
+                window.location.href = "{% url 'webapp:meditate' %}";
             });
-            
 
+            
             // function to send data to record the session in backend asynchronusly
             function endSession(){
                 let endtime = new Date();
@@ -154,7 +94,7 @@
                 let sessionData = {
                     start_time: starttime.toISOString(),
                     end_time: endtime.toISOString(),
-                    session_type: "Breathing Session"
+                    session_type: "Meditation Session"
                 };
                 updateSession(sessionData);
                     
@@ -204,6 +144,17 @@
                 return cookieValue;
             }
 
+            playbutton.addEventListener("click", function(){
+                if(currentaudio.paused){
+                    currentaudio.play();
+                    currentaudio.loop = true;
+                    playbutton.src = "{% static 'webapp/icons/pause.svg' %}";
+                } else {
+                    currentaudio.pause();
+                    playbutton.src = "{% static 'webapp/icons/play.svg' %}";
+                }
+            });
+
             var slider = document.getElementById("mySlider");
             const inhale = document.querySelector('.inhale');
 
@@ -221,22 +172,19 @@
                     // If the slider value reaches the maximum, stop the interval
                     if(slider.value == slider.max) {
                         clearInterval(interval);
-                        dot.style.animationPlayState = 'paused';
-                        expand.style.animationPlayState = 'paused';
-                        endSession();
                         currentaudio.pause();
+                        playbutton.src = "{% static 'webapp/icons/play.svg' %}";
+                        endSession();
                         finish.showModal();
-                    }
-
-                    if(slider.value%10 === 0){
-                        inhale.textContent = "Inhale";
-                    } else if(slider.value%5 === 0){
-                        inhale.textContent = "Exhale";
                     }
 
                 }, 1000);
             });
 
+            // When the audio is paused, stop moving the slider
+            currentaudio.addEventListener("pause", function() {
+                clearInterval(interval);
+            });
 
 
         </script>

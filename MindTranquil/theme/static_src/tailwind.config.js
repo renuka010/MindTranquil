@@ -58,7 +58,7 @@ module.exports = {
                 lightgrey: '#ABAEB0',
             },
             height: {
-                '128': '24rem',
+                '128': '22rem',
             },
         },
     },

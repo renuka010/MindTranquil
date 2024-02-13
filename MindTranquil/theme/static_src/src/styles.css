@@ -33,6 +33,10 @@
 
     /* The track (line) of the slider */
     .range-track:disabled::-webkit-slider-runnable-track {
-        @apply bg-cyan-500 h-1; /* Change this to your desired color */
+        @apply bg-black dark:bg-darkblue h-1; /* Change this to your desired color */
+    }
+
+    .stattext{
+        @apply text-black font-sans text-2xl font-light;
     }
 }

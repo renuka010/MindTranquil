@@ -11,13 +11,11 @@
 
 .streak {
     height: 25rem;
-    width: 190px;
     background-color: white;
     border-radius: 10px;
-    overflow: hidden;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin: 2px;
-    padding: 20px 10px 10px 10px;
+    padding: 5px 5px 5px 5px;
 }
   
 .calendar-header {
@@ -34,25 +32,32 @@
   .bground {
     background: rgb(94, 210, 236);
     display: flex;
-    justify-content: space-between;
-    border-radius: 7px;
     align-items: center;
     font-weight: 700;
     color: #ffffff;
-    height: 10rem;
-    margin: 10px;
+    height: 6rem;
+    margin: 5px;
   }
 
-  .bground2 {
-    background: rgb(179, 247, 255);
+  .bground1 {
+    background: rgb(94, 210, 236);
     display: flex;
     justify-content: space-between;
     border-radius: 7px;
     align-items: center;
     font-weight: 700;
     color: #ffffff;
-    height: 10rem;
-    margin: 10px;
+    height: 11rem;
+    margin: 7px;
+  }
+
+  .bground2 {
+    background: rgb(179, 247, 255);
+    display: flex;
+    font-weight: 700;
+    color: #ffffff;
+    height: 24rem;
+    margin: 3px;
   }
   
   .calendar-body {
@@ -131,10 +136,10 @@
     position: absolute;
   }
   
-  .calendar-days div.current-date {
+  .calendar-days div.active-date {
     color: #f8fbff;
     background-color: #9796f0;
-    border-radius: 20%;
+    border-radius: 80%;
   }
   
 

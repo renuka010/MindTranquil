@@ -52,12 +52,12 @@ x-data="{open:false,menu:false, lokasi:false}">
 <script>
 
     function updatePreferredMode(mode) {
+        
         fetch('/webapp/update_mode_api/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken'), // Include CSRF token for security
-                'Authorization': 'Token ' + sessionStorage.getItem('token')
             },
             body: JSON.stringify({ preferred_mode: mode })
         })
@@ -65,9 +65,10 @@ x-data="{open:false,menu:false, lokasi:false}">
             if (response.ok) {
                 // Update UI or display success message
                 console.log('Preferred mode updated successfully');
-            } else {
-                // Handle error
-                console.error('Failed to update preferred mode');
+            }
+            else {
+                // Update UI to display error message
+                console.error('Preferred mode update failed');
             }
         })
         .catch(error => {
