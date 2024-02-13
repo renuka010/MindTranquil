@@ -4,27 +4,52 @@
 {% block content %}
 <head>
     <link rel="stylesheet" href="{% static 'webapp/css/styles.css' %}">
+    
 </head>
 <body>
     <div class="flex flex-col items-center">
 
   <div class="contianer flex flex-wrap pl-20">
 
-    <div class="streak dark:bg-lightblack">
-        <div class="bground dark:bg-darkgrey">
+    <div class="streak w-36 dark:bg-lightblack">
 
+        <div class="bground dark:bg-darkgrey flex flex-col">
+          <div class="">
+            <h1 class="text-black font-sans text-xs">TOTAL SESSIONS</h1>
+          </div>
+          <div class="">
+            <h1 class="stattext text-5xl pt-2">{{stats.total_sessions}}</h1> 
+          </div>
         </div>
-        <div class="bground dark:bg-darkgrey">
 
+        <div class="bground dark:bg-darkgrey flex flex-col">
+          <div class="">
+            <h1 class="text-black font-sans text-xs">TOTAL HRS</h1>
+          </div>
+          <div class="pt-5">
+            <h1 id="total_time" class="stattext">{{totaltime}}</h1> 
+          </div>
+        </div>
+
+        <div class="bground1 dark:bg-darkgrey flex flex-col">
+          <div class="">
+            <h1 class="text-black font-sans text-xs">CURRENT STREAK</h1>
+          </div>
+          <div class="pb-3">
+            <h1 class="stattext text-5xl">{{stats.current_streak}}</h1> 
+          </div>
+          <div class="">
+            <h1 class="text-black font-sans text-xs">BEST STREAK</h1>
+          </div>
+          <div class="pb-3">
+            <h1 class="stattext text-5xl">{{stats.best_streak}}</h1> 
+          </div>
         </div>
     </div>
 
-    <div class="streak dark:bg-lightblack">
-        <div class="bground2 dark:bg-lightgrey">
-
-        </div>
-        <div class="bground2 dark:bg-lightgrey">
-
+    <div class="streak flex flex-col w-64 dark:bg-lightblack ">
+        <div class="bground2 dark:bg-lightgrey overflow-scroll flex flex-col m-2">
+          <!-- Data will be filled at runtime-->
         </div>
     </div>
 
@@ -70,6 +95,13 @@
 
   </div>
 
+  <script>
+    let [hours, minutes] = "{{stats.total_time}}".split(":");
+    let totaltime = `${hours}Hr${minutes}m`;
+    document.getElementById("total_time").innerHTML = totaltime;
+    
+  </script>
+  
   
 </body>
 

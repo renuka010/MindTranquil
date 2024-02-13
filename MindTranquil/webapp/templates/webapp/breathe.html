@@ -13,11 +13,12 @@
         {% csrf_token %}
         <div class="flex ml-5">
             <h2 class="mytext">SELECT TIME</h2>
-            <input type="time" id="time" name="time" class="border-2 border-gray-300 dark:border-black dark:bg-lightgrey p-2 rounded-lg">
+            <input type="time" id="time" name="time" value="00:00" class="border-2 border-gray-300 dark:border-black dark:bg-lightgrey p-2 rounded-lg">
+            <h2 class="mytext pl-1">Hr:Min</h2>
         </div>
         <br>
         <div class="flex flex-row">
-            <h1 class="mytext pl-7">SOUND</h1>
+            <h1 class="mytext pl-7 pr-16">SOUND</h1>
         
             <button type="button" class="btn h-12" onclick="musicDialog.showModal()">Select</button>
             <span class="px-2"></span>
@@ -161,6 +162,15 @@
         currentAudio.pause();
         currentAudio.currentTime = 0;
         musicDialog.close();
+    });
+
+    document.getElementById('submitButton').addEventListener('click', function(event) {
+        var time = document.getElementById('time').value;
+
+        if (time === '' || time === '00:00') {
+            event.preventDefault();
+            alert('Please set time.');
+        }
     });
 
 </script>
