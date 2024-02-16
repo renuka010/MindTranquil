@@ -1,5 +1,5 @@
 {% extends "webapp/base.html" %}
-
+{% load static %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -11,7 +11,9 @@
                     designed to nurture your inner journey with simplicity and flexibility.
                 </p>
 
-                <br><br>
+                <div class="flex justify-center items-center">
+                    <img class="h-20 w-32" src="{% static 'webapp/icons/i1.png' %}" alt="meditation">
+                </div>
 
                 <p class="mytext pl-20 pr-10 text-pretty">
                      With our unguided meditation feature, you can seamlessly track your 

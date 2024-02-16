@@ -6,6 +6,11 @@ from django.forms.widgets import PasswordInput, TextInput
 from .models import User
 
 class RegistrationForm(UserCreationForm):
+    '''
+        Form for user registration.
+
+        This form extends the default Django UserCreationForm.
+    '''
     class Meta:
         model = User
         fields = ['username','email','password1','password2'] # fields to display
@@ -15,6 +20,11 @@ class RegistrationForm(UserCreationForm):
     password2 = forms.CharField(widget=PasswordInput(attrs={'size': '50'}))
 
 class LoginUserForm(AuthenticationForm):
+    '''
+        Form for user login.
+
+        This form extends the default Django AuthenticationForm.
+    '''
     class Meta:
         model = User
         fields = ['username', 'password'] # fields to display
