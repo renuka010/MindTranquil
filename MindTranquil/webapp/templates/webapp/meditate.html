@@ -23,7 +23,7 @@
             <button type="button" class="btn h-12" onclick="musicDialog.showModal()">Select</button>
             <span class="px-2"></span>
             <button class="h-12 w-12" disabled>
-                <img id="selectedMusic" class="h-8 w-8" src="{% static 'webapp/icons/s0.png' %}">
+                <img id="selectedMusic" class="h-8 w-8" src="{% static 'webapp/icons/m0.svg' %}">
             </button>
 
             <dialog id="musicDialog" class="modal modal-bottom sm:modal-middle rounded">
@@ -34,89 +34,24 @@
                 </div>
 
                 <div class="flow-root w-80 pt-5">
-
-
                     <ul id="musicList" role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-7 h-7 rounded-full" src="{% static 'webapp/icons/s0.png' %}" alt="No sound">
+                        {% for i, music in music_types.items %}
+                            <li class="py-3 sm:py-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex-shrink-0">
+                                        <img class="w-8 h-8 rounded-full" src="{% static 'webapp/icons/m' %}{{i}}.svg" alt="sound">
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            {{music}}
+                                        </p>
+                                    </div>
+                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                        <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/m' %}{{i}}.mp3">Play</button>
+                                    </div>
                                 </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                        Silent
-                                    </p>
-                                </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/s0.mp3' %}">Play</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="{% static 'webapp/icons/s1.png' %}" alt="sound">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                        Music 1
-                                    </p>
-                                </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/s0.mp3' %}">Play</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="{% static 'webapp/icons/s2.png' %}" alt="sound">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                        Music 2
-                                    </p>
-                                </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/s0.mp3' %}">Play</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="{% static 'webapp/icons/s2.png' %}" alt="sound">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                        Music 2
-                                    </p>
-                                </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/s0.mp3' %}">Play</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="{% static 'webapp/icons/s2.png' %}" alt="sound">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                        Music 2
-                                    </p>
-                                </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/s0.mp3' %}">Play</button>
-                                </div>
-                            </div>
-                        </li>
-                        
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
 
@@ -144,9 +79,9 @@
 </body>
 <script>
 
-    let currentAudio = new Audio("{% static 'webapp/audio/s0.mp3' %}");
+    let currentAudio = new Audio("{% static 'webapp/audio/m0.mp3' %}");
     let selectedSong = currentAudio;
-    document.getElementById('music').value = "{% static 'webapp/audio/s0.mp3' %}";
+    document.getElementById('music').value = "{% static 'webapp/audio/m0.mp3' %}";
 
     // Get the play buttons and add event listeners
     const playButtons = document.querySelectorAll('.playButton');
@@ -188,7 +123,7 @@
         const selectedMusic = document.getElementById('selectedMusic'); // Get the selected music icon
         document.getElementById('music').value = selectedSong.currentSrc; // Set the selected song to the hidden input
         let s = selectedSong.currentSrc.slice(-6, -4);
-        let imagesource = "{% static 'webapp/icons/' %}" + s +".png";
+        let imagesource = "{% static 'webapp/icons/' %}" + s +".svg";
         selectedMusic.src = imagesource; // Set the selected music icon to the selected song
         console.log(s+ " music selected");
         currentAudio.pause();

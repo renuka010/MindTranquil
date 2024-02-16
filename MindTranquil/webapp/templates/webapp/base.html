@@ -9,7 +9,8 @@
     
 </head>
 
-<body id="mainbody" class="bg-gradient-to-r from-cyan-100 to-yellow-50 dark:bg-gradient-to-r dark:from-sky-950 dark:to-yellow-950">
+<body id="mainbody" 
+    class="bg-gradient-to-r from-cyan-100 to-yellow-50 dark:bg-gradient-to-r dark:from-sky-950 dark:to-yellow-950">
     <!-- create nav bar -->
     {% include 'webapp/topnavbar.html' %}
     
@@ -18,7 +19,7 @@
         <div class="fixed">
             {% include 'webapp/sidenavbar.html' %}
         </div>
-        <main class="pl-5 pr-5 pt-16 container flex flex-col">
+        <main class="pl-5 pr-5 pt-16 container flex flex-col" >
             {% block content %}
 
             {% endblock %}
