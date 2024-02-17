@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -36,6 +37,8 @@ def user_registration(request):
 
             auth.login(request, user)
             return redirect('webapp:index')
+        else:
+            messages.error(request, 'There was a problem with your registration.')
     else:
         form = RegistrationForm()
     return render(request, 'webapp/register.html', {'form': form})
@@ -156,7 +159,7 @@ def update_session_api(request):
     '''
     data = {**request.data, 'username': request.user.id}
     serializer = SessionsSerializer(data=data)
-    end_time = datetime.strptime(request.data.get('end_time'), "%Y-%m-%dT%H:%M:%S.%fZ")
+    end_time = datetime.datetime.strptime(request.data.get('end_time'), "%Y-%m-%dT%H:%M:%S.%fZ")
     if serializer.is_valid() and not (end_time.hour == 0 and end_time.minute == 0):
         session = serializer.save()
 
@@ -171,7 +174,6 @@ def update_session_api(request):
         user_stats.best_streak = max(user_stats.best_streak, user_stats.current_streak)
         user_stats.last_session_date = current_date
         user_stats.save()
-
         return Response({'message': 'Session updated successfully'})
     else:
         return Response({'error': 'Invalid request method'}, status=400)
@@ -228,3 +230,4 @@ def play_session(request):
         This view function renders the meditation session.
     '''
     return render(request, 'webapp/play_session.html', context={'data': request.POST})
+
