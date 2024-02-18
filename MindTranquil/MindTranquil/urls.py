@@ -20,8 +20,8 @@ from django.urls import path, include
 from webapp import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('webapp/', include('webapp.urls')),
+    path("admin/", admin.site.urls),
+    path("webapp/", include("webapp.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
-    path('', views.index),
+    path("", views.index),
 ]
