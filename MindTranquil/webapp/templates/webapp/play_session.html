@@ -18,7 +18,7 @@
         <div class="container flex flex-col h-screen">
             <div class="container flex flex-row">
                 <div class="container flex flex-col">
-                    <h1 class="heading text-lightblack pt-3">Meditation session</h1>
+                    <h1 class="heading pt-3">Meditation session</h1>
                 </div>
                 <div class="container flex flex-col float-right w-12 p-2">
                     <a class="" href="#">     
@@ -96,7 +96,9 @@
                     end_time: endtime.toISOString(),
                     session_type: "Meditation Session"
                 };
-                updateSession(sessionData);
+                if(mySlider.value > 59){
+                    updateSession(sessionData);
+                }
                     
                 console.log(sessionData);
 

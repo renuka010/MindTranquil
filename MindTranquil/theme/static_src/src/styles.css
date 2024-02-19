@@ -28,7 +28,7 @@
     }
 
     .heading{
-        @apply text-center text-4xl font-light font-sans text-darkblue;
+        @apply text-center text-4xl font-light font-sans text-cyan-500;
     }
 
     /* The track (line) of the slider */

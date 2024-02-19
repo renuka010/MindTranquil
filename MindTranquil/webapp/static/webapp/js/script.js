@@ -53,7 +53,7 @@ const generateSessions = (sessions) => {
   }
   for (let i = 0; i < sessions.length; i++) {
     let session = document.createElement('div');
-    session.className = 'h-16 w-52 p-2 m-2 rounded-md bg-white text-black flex flex-shrink-0 items-center';
+    session.className = 'h-16 w-52 p-2 m-2 rounded-md bg-white flex flex-shrink-0 items-center';
     
      // Get the day of the end_time
      let endTime = new Date(sessions[i].end_time);
@@ -61,12 +61,24 @@ const generateSessions = (sessions) => {
  
      // Format the duration as 'XhrYmin'
      let [hours, minutes] = sessions[i].duration.split(':');
-     let duration = `${Number(hours)}hr ${Number(minutes)}m`;
+     let duration = `${Number(minutes)}m`;
+     if (hours !== '00') {
+        duration = `${Number(hours)}hr`;
+     }
      let session_type = (sessions[i].session_type.split(' '))[0];
+     let endhours = endTime.getHours();
+     let ampm = endhours >= 12 ? 'pm' : 'am';
  
-     session.innerHTML = `<div class="" style="width:3rem;"><h1 class="text-4xl font-light font-sans text-darkblue">`+day+`</h1></div>
-     <div class="" style="width:8rem;"><h1 class="text-xl font-light font-sans text-darkblue">`+session_type+`</h1></div>
-     <div class="" style="width:2rem;"><h1 class="text-xs font-light font-sans text-darkblue">`+duration+`</h1></div>`;
+     session.innerHTML = `<div class="" style="width:3rem;"><h1 class="text-4xl font-sans font-light text-darkblue">`+day+`</h1></div>
+     <div class="" style="width:8rem;">
+     <h1 class="text-2xl font-sans font-light text-darkblue">`+session_type+`</h1>
+     <div class="" style="width:8rem;">
+      <h1 class="text-xs font-sans font-light text-darkblue">`+
+      endhours%12+`:`+endTime.getMinutes()+` `+ampm
+      +`</h1>
+     </div>
+     </div>
+     <div class="" style="width:2rem;"><h1 class="text-xs font-sans font-light text-darkblue">`+duration+`</h1></div>`;
 
      bground2.appendChild(session);
   }
