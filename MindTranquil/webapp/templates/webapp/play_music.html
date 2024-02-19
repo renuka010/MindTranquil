@@ -156,7 +156,10 @@
                     end_time: endtime.toISOString(),
                     session_type: "Breathing Session"
                 };
-                updateSession(sessionData);
+                
+                if(mySlider.value > 59){
+                    updateSession(sessionData);
+                }
                     
                 console.log(sessionData);
 

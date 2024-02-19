@@ -13,7 +13,20 @@
         {% csrf_token %}
         <div class="flex ml-5">
             <h2 class="mytext">SELECT TIME</h2>
-            <input type="time" id="time" name="time" value="00:00" class="border-2 border-gray-300 dark:border-black dark:bg-lightgrey p-2 rounded-lg">
+            <select id="time" name="time" class="border-2 border-gray-300 dark:border-black dark:bg-lightgrey p-2 rounded-lg w-20 h-12">
+                <option value="00:05">00:05</option>
+                <option value="00:10">00:10</option>
+                <option value="00:15">00:15</option>
+                <option value="00:20">00:20</option>
+                <option value="00:25">00:25</option>
+                <option value="00:30">00:30</option>
+                <option value="00:35">00:35</option>
+                <option value="00:40">00:40</option>
+                <option value="00:45">00:45</option>
+                <option value="00:50">00:50</option>
+                <option value="00:55">00:55</option>
+                <option value="01:00">01:00</option>
+            </select>
             <h2 class="mytext pl-1">Hr:Min</h2>
         </div>
         <br>
@@ -48,7 +61,7 @@
                                         </p>
                                     </div>
                                     <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/b0.mp3' %}">Play</button>
+                                        <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/s0.mp3' %}">Play</button>
                                     </div>
                                 </div>
                             </li>
@@ -64,7 +77,7 @@
                                         </p>
                                     </div>
                                     <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/b1.mp3' %}">Play</button>
+                                        <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/s1.mp3' %}">Play</button>
                                     </div>
                                 </div>
                             </li>
@@ -80,7 +93,7 @@
                                         </p>
                                     </div>
                                     <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/b2.mp3' %}">Play</button>
+                                        <button type="button" class="btn playButton" data-song="{% static 'webapp/audio/s2.mp3' %}">Play</button>
                                     </div>
                                 </div>
                             </li>

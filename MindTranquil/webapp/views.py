@@ -173,7 +173,6 @@ def update_session_api(request):
     )
     if serializer.is_valid() and not (end_time.hour == 0 and end_time.minute == 0):
         session = serializer.save()
-
         user_stats = UserStats.objects.get(user=request.user)
         user_stats.total_sessions += 1
         user_stats.total_time += session.duration

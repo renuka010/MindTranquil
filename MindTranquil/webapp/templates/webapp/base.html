@@ -10,12 +10,12 @@
 </head>
 
 <body id="mainbody" 
-    class="bg-gradient-to-r from-cyan-100 to-yellow-50 dark:bg-gradient-to-r dark:from-sky-950 dark:to-yellow-950">
+    class=" bg-gradient-to-r from-cyan-100 to-yellow-50 dark:bg-gradient-to-r dark:from-sky-950 dark:to-yellow-950">
     <!-- create nav bar -->
     {% include 'webapp/topnavbar.html' %}
     
-    <div class ="container flex ">
-        
+    <div class ="container flex flex-col h-screen">
+        <div class ="container flex flex-grow">
         <div class="fixed">
             {% include 'webapp/sidenavbar.html' %}
         </div>
@@ -24,7 +24,39 @@
 
             {% endblock %}
         </main>
+        </div>
+        <div class="container flex flex-col">
+        <footer class="bg-white dark:bg-ablack text-blue-900 dark:text-white py-4 p-20">
+            <div class="container mx-auto flex flex-wrap justify-between items-center">
+                <div class="flex-grow w-full sm:w-auto text-center sm:text-left">
+                    <p>&copy; 2024 Renuka. All rights reserved.</p>
+                </div>
+                <div class="flex-grow w-full sm:w-auto text-right">
+                    <ul class="flex justify-center sm:justify-end space-x-4">
+                        <li>
+                            <a href="https://github.com/renuka010/mindTranquil" target="_blank" rel="noopener noreferrer">
+                            <img src="{% static 'webapp/icons/github.svg' %}" alt="GitHub" class="h-6 w-6 inline-block">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:renuka@gmail.com" target="_blank" rel="noopener noreferrer">
+                            <img src="{% static 'webapp/icons/email.svg' %}" alt="Email" class="h-6 w-6 inline-block">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/renuka-bhaskaran-451680227/" target="_blank" rel="noopener noreferrer">
+                            <img src="{% static 'webapp/icons/linkedin.svg' %}" alt="linkedin" class="h-6 w-6 inline-block">
+                            </a>
+                        </li>
+                        <!-- Add social media icons/links here -->
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        </div>
+
     </div>
+    
    
     <script src="{% static 'webapp/js/script.js' %}"></script>
 </body>

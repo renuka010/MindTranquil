@@ -60,6 +60,9 @@ module.exports = {
             height: {
                 '128': '22rem',
             },
+            fontFamily: {
+                'custom': ['gabriola'],
+            },
         },
     },
     plugins: [
