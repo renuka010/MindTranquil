@@ -63,6 +63,7 @@ https://github.com/renuka010/MindTranquil/assets/72569696/502f31d5-7010-4698-a4b
 The application is highly scalable. Following are the future scope of this application.
 - Setting reminders to get notified.
 - Adding few guided meditation sessions for beginners.
+- Javascript codes should be moved to separate file.
 
 ## License
 
