@@ -64,6 +64,7 @@ The application is highly scalable. Following are the future scope of this appli
 - Setting reminders to get notified.
 - Adding few guided meditation sessions for beginners.
 - Javascript codes should be moved to separate file.
+- Analysis with visualization for stats dashboard.
 
 ## License
 
