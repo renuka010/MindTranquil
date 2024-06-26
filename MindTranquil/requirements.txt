@@ -20,7 +20,7 @@ django-browser-reload==1.12.1
 django-cors-headers==4.3.1
 django-crispy-forms==2.1
 django-tailwind==3.8.0
-djangorestframework==3.14.0
+djangorestframework==3.15.2
 idna==3.7
 Jinja2==3.1.4
 kombu==5.3.5
